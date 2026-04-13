@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink, Navigate } from 'react-router-dom';
 import { Home as HomeIcon, PlusCircle, BarChart2, Newspaper, User, PieChart } from 'lucide-react';
+import { mockProblems as initialProblems } from './data/mockData';
 
 // Pages
 import HomePage from './pages/Home';
@@ -17,20 +18,47 @@ import Sidebar from './components/Sidebar';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [problems, setProblems] = useState(initialProblems);
+  const [feedItems, setFeedItems] = useState([
+    { id: 1, text: "Novo reporte em Luanda Sul", time: "Há 2 min", type: "report" },
+    { id: 2, text: "Obras concluídas no cazenga", time: "Há 15 min", type: "success" },
+    { id: 3, text: "Orçamento participativo aberto em Talatona", time: "Hoje", type: "news" },
+  ]);
 
-  const handleLogin = () => {
-    setIsLoggedIn(true);
+  const handleLogin = () => setIsLoggedIn(true);
+  const handleLogout = () => setIsLoggedIn(false);
+
+  const handleVote = (id) => {
+    setProblems(prev => prev.map(p => 
+      p.id === id ? { ...p, votes: p.votes + 1 } : p
+    ));
   };
 
-  const handleLogout = () => {
-    setIsLoggedIn(false);
+  const handleAddReport = (newReport) => {
+    const reportId = problems.length + 1;
+    const report = {
+      ...newReport,
+      id: reportId,
+      votes: 0,
+      comments: [],
+      date: new Date().toLocaleDateString('pt-AO'),
+      status: 'recebido'
+    };
+    
+    setProblems([report, ...problems]);
+    
+    // Add to activity feed
+    setFeedItems([
+      { id: Date.now(), text: `Novo reporte: ${report.title}`, time: "Agora", type: "report" },
+      ...feedItems
+    ]);
   };
 
   return (
     <Router>
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage feedItems={feedItems} />} />
         <Route 
           path="/login" 
           element={!isLoggedIn ? <AuthPage onLogin={handleLogin} /> : <Navigate to="/dashboard" replace />} 
@@ -56,9 +84,9 @@ const App = () => {
 
                   <main className="app-content">
                     <Routes>
-                      <Route path="/dashboard" element={<DashboardPage />} />
-                      <Route path="/home" element={<HomePage />} />
-                      <Route path="/report" element={<ReportPage />} />
+                      <Route path="/dashboard" element={<DashboardPage problems={problems} />} />
+                      <Route path="/home" element={<HomePage problems={problems} onVote={handleVote} />} />
+                      <Route path="/report" element={<ReportPage onAddReport={handleAddReport} />} />
                       <Route path="/transparency" element={<TransparencyPage />} />
                       <Route path="/news" element={<NewsPage />} />
                       <Route path="/profile" element={<ProfilePage />} />

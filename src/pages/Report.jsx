@@ -3,16 +3,25 @@ import { Camera, MapPin, Send } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import MapView from '../components/MapView';
 
-const Report = () => {
+const Report = ({ onAddReport }) => {
   const navigate = useNavigate();
+  const [previewImage, setPreviewImage] = useState(null);
   const [formData, setFormData] = useState({
     title: '',
     description: '',
     category: 'Infraestrutura',
     location: '',
     lat: -8.8383,
-    lng: 13.2344
+    lng: 13.2344,
+    image: null
   });
+
+  const simulateImageUpload = () => {
+    // Simulating selecting a relevant photo
+    const mockImage = "https://images.unsplash.com/photo-1584467735871-8e85353a8413?q=80&w=1000&auto=format&fit=crop";
+    setPreviewImage(mockImage);
+    setFormData({ ...formData, image: mockImage });
+  };
 
   const handleMapClick = (latlng) => {
     setFormData({
@@ -25,8 +34,9 @@ const Report = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    onAddReport(formData);
     alert('Relatório enviado com sucesso! Obrigado pela sua participação em Angola.');
-    navigate('/dashboard');
+    navigate('/home');
   };
 
   return (
@@ -96,11 +106,26 @@ const Report = () => {
             </div>
 
             <div className="input-group flex flex-col justify-end">
-               <button type="button" className="btn btn-outline w-full h-[48px] text-xs">
-                 <Camera size={18} /> Foto/Vídeo
+               <button 
+                 type="button" 
+                 className={`btn ${previewImage ? 'btn-secondary' : 'btn-outline'} w-full h-[48px] text-xs`}
+                 onClick={simulateImageUpload}
+               >
+                 <Camera size={18} /> {previewImage ? 'Imagem Anexada' : 'Foto/Vídeo'}
                </button>
             </div>
           </div>
+
+          {previewImage && (
+            <div className="card p-2 bg-gray-50 flex items-center gap-3">
+              <img src={previewImage} alt="Preview" className="w-16 h-16 object-cover rounded-md" />
+              <div className="flex-1">
+                <p className="text-xs font-bold">Arquivo anexado</p>
+                <p className="text-[10px] text-muted">imagem_reporte.jpg</p>
+              </div>
+              <button type="button" onClick={() => setPreviewImage(null)} className="text-red-500 text-xs font-bold px-2">Remover</button>
+            </div>
+          )}
 
           <div className="input-group">
             <label className="input-label">Descrição</label>

@@ -75,26 +75,36 @@ export const mockNews = [
     title: "Governo investe em infraestrutura urbana em Luanda",
     summary: "Novos projectos de asfaltagem foram aprovados para melhorar a mobilidade urbana.",
     content: "O Governo Provincial de Luanda anunciou hoje um novo pacote de investimentos focado na reparação de vias principais...",
-    date: "2024-03-22",
-    category: "Obras Públicas"
+    date: "24 Mar 2024",
+    category: "Obras Públicas",
+    image: "https://images.unsplash.com/photo-1590674899484-13da0d1b5ec4?q=80&w=800&auto=format&fit=crop"
   },
   {
     id: 2,
-    title: "Campanha de sensibilização ambiental começa amanhã",
-    summary: "Iniciativa visa reduzir o descarte irregular de resíduos nos centros urbanos.",
-    content: "A campanha 'Cidade Limpa' percorrerá diversos bairros para educar sobre a importância da gestão de resíduos...",
-    date: "2024-03-21",
-    category: "Ambiente"
+    title: "Orçamento Participativo 2024",
+    summary: "Abertas as votações para os projectos prioritários do município de Luanda Sul.",
+    date: "22 Mar 2024",
+    category: "Governação",
+    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 3,
+    title: "Workshop: Tecnologia e Cidadania",
+    summary: "Jovens debatem o futuro da participação digital na administração local.",
+    date: "20 Mar 2024",
+    category: "Eventos",
+    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop"
   }
 ];
 
 export const mockUser = {
   name: "Albino Ernesto",
-  points: 1250,
-  ranking: 15,
-  achievements: ["Cidadão Ativo", "Problem Solver", "Votante Assíduo"],
+  email: "albino@example.com",
+  points: 750,
+  ranking: 124,
   reportsCount: 12,
-  votesReceived: 450
+  achievements: ["Cidadão Activo", "Fiscal do Bairro", "Voz Prime"],
+  coverPhoto: "https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=1200&auto=format&fit=crop"
 };
 
 export const mockStats = {

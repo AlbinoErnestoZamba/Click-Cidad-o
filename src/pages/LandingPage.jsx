@@ -6,15 +6,8 @@ import {
   Search, CheckCircle, Bell
 } from 'lucide-react';
 
-const LandingPage = () => {
+const LandingPage = ({ feedItems }) => {
   const navigate = useNavigate();
-
-  // Simulated Live Feed
-  const feedItems = [
-    { id: 1, text: "Novo reporte em Luanda Sul", time: "Há 2 min", type: "report" },
-    { id: 2, text: "Obras concluídas no cazenga", time: "Há 15 min", type: "success" },
-    { id: 3, text: "Orçamento participativo aberto em Talatona", time: "Hoje", type: "news" },
-  ];
 
   const handleNavigate = (mode) => {
     navigate('/login', { state: { mode } });
@@ -49,9 +42,10 @@ const LandingPage = () => {
           <a onClick={() => scrollTo('sobre')}>Sobre</a>
           <a onClick={() => scrollTo('como-funciona')}>Como funciona</a>
           <a onClick={() => scrollTo('quem-somos')}>Quem somos</a>
-          <button className="btn btn-outline" onClick={() => handleNavigate('login')}>
-            Entrar
-          </button>
+        </div>
+        <div className="nav-actions">
+          <button className="btn btn-outline" onClick={() => navigate('/login')}>Entrar</button>
+          <button className="btn btn-primary" onClick={() => navigate('/login', { state: { mode: 'register' } })}>Criar Conta</button>
         </div>
       </nav>
 
@@ -69,6 +63,15 @@ const LandingPage = () => {
               GovLink é a ponte tecnológica que conecta a juventude angolana à governação transparente.
               Reporte, acompanhe e transforme a sua comunidade em tempo real.
             </p>
+
+            <div className="hero-actions">
+              <button className="btn btn-primary hero-cta" onClick={() => navigate('/login', { state: { mode: 'register' } })}>
+                Começar Agora — É Grátis
+              </button>
+              <button className="btn btn-outline" onClick={() => scrollTo('como-funciona')}>
+                Ver como funciona
+              </button>
+            </div>
 
             {/* Quick Actions Bar */}
             <div className="quick-actions glass">

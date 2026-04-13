@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { ThumbsUp, MessageSquare, MapPin, Clock } from 'lucide-react';
 import { mockProblems } from '../data/mockData';
 
-const Home = () => {
-  const [problems, setProblems] = useState(mockProblems);
+const Home = ({ problems, onVote }) => {
+  const [votedIds, setVotedIds] = React.useState([]);
 
-  const handleVote = (id) => {
-    setProblems(problems.map(p => 
-      p.id === id ? { ...p, votes: p.votes + 1 } : p
-    ));
+  const handleLocalVote = (id) => {
+    if (!votedIds.includes(id)) {
+      onVote(id);
+      setVotedIds([...votedIds, id]);
+    }
   };
 
   const getStatusBadge = (status) => {
@@ -40,7 +41,9 @@ const Home = () => {
             <p className="text-sm text-muted mb-3">{problem.description}</p>
             
             {problem.image && (
-              <img src={problem.image} alt={problem.title} className="img-responsive mb-3" style={{ height: '160px', width: '100%' }} />
+              <div className="news-image-frame mb-3">
+                <img src={problem.image} alt={problem.title} />
+              </div>
             )}
 
             <div className="flex items-center gap-3 text-xs text-muted mb-4">
@@ -56,11 +59,11 @@ const Home = () => {
 
             <div className="flex justify-between items-center border-top pt-3" style={{ borderTop: '1px solid var(--border)' }}>
               <button 
-                className="btn btn-outline py-1 px-3" 
-                onClick={() => handleVote(problem.id)}
+                className={`btn ${votedIds.includes(problem.id) ? 'voted-button' : 'btn-outline'} py-1 px-3`}
+                onClick={() => handleLocalVote(problem.id)}
                 style={{ fontSize: '0.75rem', gap: '0.25rem' }}
               >
-                <ThumbsUp size={14} />
+                <ThumbsUp size={14} className={votedIds.includes(problem.id) ? 'fill-current' : ''} />
                 <span>{problem.votes} Votos</span>
               </button>
               
