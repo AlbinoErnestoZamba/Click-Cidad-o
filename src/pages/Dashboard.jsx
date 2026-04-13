@@ -57,7 +57,7 @@ const Dashboard = () => {
           <span className="badge badge-secondary">{mockProblems.length} Reportes no Mapa</span>
         </div>
         <MapView 
-          height="400px" 
+          height={window.innerWidth < 768 ? "300px" : "400px"} 
           markers={mapMarkers} 
           zoom={12}
         />

@@ -97,26 +97,26 @@ const App = () => {
                   {/* Mobile Bottom Navigation */}
                   <nav className="bottom-nav">
                     <NavLink to="/home" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
-                      <HomeIcon size={24} />
-                      <span>Início</span>
+                      <HomeIcon size={20} />
+                      <span style={{ fontSize: '0.65rem' }}>Início</span>
                     </NavLink>
                     <NavLink to="/transparency" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
-                      <BarChart2 size={24} />
-                      <span>Transparência</span>
+                      <BarChart2 size={20} />
+                      <span style={{ fontSize: '0.65rem' }}>Contas</span>
                     </NavLink>
                     <NavLink to="/report" className="nav-item">
                       <div className="fab-placeholder">
-                        <PlusCircle size={32} color="var(--secondary)" fill="white" />
+                        <PlusCircle size={28} color="var(--secondary)" fill="white" />
                       </div>
-                      <span>Reportar</span>
+                      <span style={{ fontSize: '0.65rem', marginTop: '4px' }}>Reportar</span>
                     </NavLink>
                     <NavLink to="/news" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
-                      <Newspaper size={24} />
-                      <span>Notícias</span>
+                      <Newspaper size={20} />
+                      <span style={{ fontSize: '0.65rem' }}>Notícias</span>
                     </NavLink>
                     <NavLink to="/dashboard" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
-                      <PieChart size={24} />
-                      <span>Painel</span>
+                      <PieChart size={20} />
+                      <span style={{ fontSize: '0.65rem' }}>Painel</span>
                     </NavLink>
                   </nav>
                 </div>
