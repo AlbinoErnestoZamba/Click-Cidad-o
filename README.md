@@ -1,16 +1,41 @@
-# React + Vite
+# GovLink Angola 🇦🇴
+**Plataforma de Governação Digital e Participação Cidadã**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+GovLink é uma iniciativa de CivicTech focada na modernização administrativa de Angola. A plataforma permite que os cidadãos reportem problemas locais, acompanhem a execução do orçamento municipal e participem activamente na melhoria da sua comunidade através de um sistema transparente e tecnológico.
 
-Currently, two official plugins are available:
+## 🚀 Como Executar o Projecto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### No Windows (Recomendado)
+Para rodar o projecto em outro PC rapidamente, basta:
+1.  Certificar-se de que tem o **Node.js** instalado (versão 18 ou superior).
+2.  Executar o arquivo `GOVLINK_SETUP.bat` que se encontra na raiz do projecto.
+    *   Este arquivo irá baixar todas as dependências automaticamente e iniciar o servidor.
 
-## React Compiler
+### Manualmente (Linux/Mac/Windows)
+Se preferir rodar via terminal:
+1.  Instale as dependências:
+    ```bash
+    npm install
+    ```
+2.  Inicie o servidor de desenvolvimento:
+    ```bash
+    npm run dev
+    ```
+3.  Aceda ao link: `http://localhost:5173/`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠 Tecnologias Utilizadas
+- **Frontend:** React (Vite)
+- **Mapas:** Leaflet.js (Mapas interactivos de Angola)
+- **Iconografia:** Lucide React
+- **Estilização:** CSS3 Puro (Design System personalizado)
+- **Navegação:** React Router 7
 
-## Expanding the ESLint configuration
+## 📋 Funcionalidades Principais
+- **Mapeamento de Reportes:** Visualização interactiva de problemas locais num mapa real de Luanda.
+- **Participação Cívica:** Sistema de votação e comentários em problemas comunitários.
+- **Transparência:** Acompanhamento de estatísticas e acções do governo local.
+- **Portal de Notícias:** Actualizações oficiais com media integrada.
+- **Perfis Verificados:** Sistema de ranking e conquistas para cidadãos activos.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+*Este projecto foi desenvolvido com o objectivo de fortalecer a ponte entre o cidadão angolano e a governação transparente.*
